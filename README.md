@@ -7,4 +7,4 @@ For Shaista, Unit 6. I'm not very good at C# and I hate WinForms so excuse the s
 ## Acknowledgements
 - Inspired by [MooICT's Tutorial](https://www.mooict.com/c-tutorial-make-a-meme-maker-app-in-windows-form-application-and-visual-studio/) (though this wasn't followed completely)
 - Icons from [Icons8](https://icons8.com/). The set is "Office XS"
-- Thanks to [Lewis](https://lewistehminerz.dev/) (@LewisTehMinerz) for (some of) his input
+- Thanks to [Lewis](https://lewistehminerz.dev/) ([@LewisTehMinerz](https://github.com/LewisTehMinerz)) for (some of) his input
