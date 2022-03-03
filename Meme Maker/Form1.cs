@@ -15,21 +15,20 @@ namespace Meme_Maker
     public partial class Meme_Maker : Form
     {
         OpenFileDialog OpenImageFile;
+        FontDialog FontPicker;
+        Font LabelFont = new Font("Impact", 18);
 
         public Meme_Maker()
         {
             InitializeComponent();
 
-            SetUpApp();
-        }
-
-        private void SetUpApp()
-        {
             FunnyMeme.Controls.Add(TopLabel);
             FunnyMeme.Controls.Add(BottomLabel);
 
-            TopLabel.Location = new Point(0, this.MenuStrip.Height*2);
-            BottomLabel.Location = new Point(0, this.Height-this.MenuStrip.Height);
+            TopLabel.Location = new Point(0, this.MenuStrip.Height * 2);
+            BottomLabel.Location = new Point(0, this.Height - this.MenuStrip.Height);
+
+            TopLabel.Font = BottomLabel.Font = LabelFont;
 
             FunnyMeme.SendToBack();
         }
@@ -69,6 +68,11 @@ namespace Meme_Maker
         {
             this.Height = this.Width = 1080;
 
+            int OldLabelHeights = TopLabel.Height;
+            float OldLabelSize = TopLabel.Font.SizeInPoints;
+            TopLabel.Font = BottomLabel.Font = new Font("Impact", 100);
+            TopLabel.Height = BottomLabel.Height = this.Height / 2;
+
             SaveFileDialog SaveDialog = new SaveFileDialog();
             SaveDialog.FileName = $"{TopLabel.Text} {BottomLabel.Text}";
             SaveDialog.DefaultExt = "png";
@@ -95,20 +99,27 @@ namespace Meme_Maker
             }
 
             this.Height = this.Width = 350;
+            TopLabel.Font = BottomLabel.Font = LabelFont;
+            TopLabel.Height = BottomLabel.Height = OldLabelHeights;
         }
 
         private void ColorPickerPrompt(object sender, EventArgs e)
         {
             if (ColourDialog.ShowDialog() == DialogResult.OK)
             {
-                TopLabel.ForeColor = ColourDialog.Color;
-                BottomLabel.ForeColor = ColourDialog.Color;
+                TopLabel.ForeColor = BottomLabel.ForeColor = ColourDialog.Color;
             }
         }
 
         private void ImageClick(object sender, EventArgs e)
         {
 
+        }
+
+        private void FontPickerDialog(object sender, EventArgs e)
+        {
+            FontPicker.ShowDialog();
+            TopLabel.Font = BottomLabel.Font = FontPicker.font;
         }
     }
 }

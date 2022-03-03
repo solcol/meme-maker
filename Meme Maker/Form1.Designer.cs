@@ -34,9 +34,11 @@
             this.buttonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.Style = new System.Windows.Forms.ToolStripMenuItem();
+            this.Colour = new System.Windows.Forms.ToolStripMenuItem();
+            this.fontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TopTextInput = new System.Windows.Forms.ToolStripTextBox();
             this.BottomTextInput = new System.Windows.Forms.ToolStripTextBox();
-            this.buttonColour = new System.Windows.Forms.ToolStripMenuItem();
             this.TopLabel = new System.Windows.Forms.Label();
             this.BottomLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FunnyMeme)).BeginInit();
@@ -50,7 +52,7 @@
             this.FunnyMeme.Location = new System.Drawing.Point(0, 27);
             this.FunnyMeme.Name = "FunnyMeme";
             this.FunnyMeme.Size = new System.Drawing.Size(334, 284);
-            this.FunnyMeme.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.FunnyMeme.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.FunnyMeme.TabIndex = 1;
             this.FunnyMeme.TabStop = false;
             this.FunnyMeme.Click += new System.EventHandler(this.ImageClick);
@@ -59,9 +61,9 @@
             // 
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonFile,
+            this.Style,
             this.TopTextInput,
-            this.BottomTextInput,
-            this.buttonColour});
+            this.BottomTextInput});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Size = new System.Drawing.Size(334, 27);
@@ -91,6 +93,30 @@
             this.buttonSave.Text = "Save Image";
             this.buttonSave.Click += new System.EventHandler(this.SaveImagePrompt);
             // 
+            // Style
+            // 
+            this.Style.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Colour,
+            this.fontToolStripMenuItem});
+            this.Style.Name = "Style";
+            this.Style.Size = new System.Drawing.Size(44, 23);
+            this.Style.Text = "Style";
+            this.Style.Click += new System.EventHandler(this.colourToolStripMenuItem_Click);
+            // 
+            // Colour
+            // 
+            this.Colour.Name = "Colour";
+            this.Colour.Size = new System.Drawing.Size(180, 22);
+            this.Colour.Text = "Colour";
+            this.Colour.Click += new System.EventHandler(this.ColorPickerPrompt);
+            // 
+            // fontToolStripMenuItem
+            // 
+            this.fontToolStripMenuItem.Name = "fontToolStripMenuItem";
+            this.fontToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fontToolStripMenuItem.Text = "Font";
+            this.fontToolStripMenuItem.Click += new System.EventHandler(this.FontPickerDialog);
+            // 
             // TopTextInput
             // 
             this.TopTextInput.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -107,17 +133,12 @@
             this.BottomTextInput.Text = "Bottom Text";
             this.BottomTextInput.TextChanged += new System.EventHandler(this.ChangeBottomText);
             // 
-            // buttonColour
-            // 
-            this.buttonColour.Name = "buttonColour";
-            this.buttonColour.Size = new System.Drawing.Size(55, 23);
-            this.buttonColour.Text = "Colour";
-            this.buttonColour.Click += new System.EventHandler(this.ColorPickerPrompt);
-            // 
             // TopLabel
             // 
+            this.TopLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TopLabel.BackColor = System.Drawing.Color.Transparent;
-            this.TopLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopLabel.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TopLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.TopLabel.Location = new System.Drawing.Point(0, 27);
@@ -171,9 +192,11 @@
         private System.Windows.Forms.ToolStripMenuItem buttonSave;
         private System.Windows.Forms.ToolStripTextBox TopTextInput;
         private System.Windows.Forms.ToolStripTextBox BottomTextInput;
-        private System.Windows.Forms.ToolStripMenuItem buttonColour;
         private System.Windows.Forms.Label TopLabel;
         private System.Windows.Forms.Label BottomLabel;
+        private System.Windows.Forms.ToolStripMenuItem Style;
+        private System.Windows.Forms.ToolStripMenuItem Colour;
+        private System.Windows.Forms.ToolStripMenuItem fontToolStripMenuItem;
     }
 }
 
