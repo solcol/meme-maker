@@ -18,14 +18,22 @@ namespace Meme_Maker
         {
             InitializeComponent();
 
+            // make the top/bottom labels children of the image element
             FunnyMeme.Controls.Add(TopLabel);
             FunnyMeme.Controls.Add(BottomLabel);
 
-            TopLabel.Location = new Point(0, this.MenuStrip.Height * 2);
-            BottomLabel.Location = new Point(0, this.Height - this.MenuStrip.Height);
+            // set the image heights to 50% of the image
+            int MenuStripHeight = this.MenuStrip.Height;
+            int TextLabelHeight = (this.Height - MenuStripHeight) / 2;
+            TopLabel.Height = BottomLabel.Height = TextLabelHeight;
 
+            // fix top label padding with the menu bar
+            TopLabel.Padding = new Padding(0, MenuStripHeight + 10, 0, 0);
+
+            // set the font to default
             TopLabel.Font = BottomLabel.Font = LabelFont;
 
+            // send image to back (behind text)
             FunnyMeme.SendToBack();
         }
 
@@ -70,7 +78,7 @@ namespace Meme_Maker
             {
                 // Show save file dialog
                 SaveFileDialog SaveDialog = new SaveFileDialog();
-                SaveDialog.FileName = $"{TopLabel.Text} {BottomLabel.Text}";
+                SaveDialog.FileName = $"{TopLabel.Text} {BottomLabel.Text} ({LabelFont.FontFamily},{LabelFont.SizeInPoints})";
                 SaveDialog.DefaultExt = "png";
                 SaveDialog.Filter = "PNGs | *.png";
                 SaveDialog.ValidateNames = true;
@@ -82,12 +90,12 @@ namespace Meme_Maker
                 if (SaveDialog.ShowDialog() == DialogResult.OK)
                 {
                     // if they picked a valid path
-                    
+
                     // set the program width to 1080x1080
                     this.Height = this.Width = 1080;
                     // move labels to better positions and change the font sizes
                     TopLabel.Height = BottomLabel.Height = this.Height / 2;
-                    TopLabel.Font = BottomLabel.Font = new Font(LabelFont.FontFamily, LabelFont.SizeInPoints * 8);
+                    TopLabel.Font = BottomLabel.Font = new Font(LabelFont.FontFamily, LabelFont.SizeInPoints * 4);
 
                     // render a capture of the program to a bitmap 
                     int w = Convert.ToInt32(FunnyMeme.Width);
@@ -110,6 +118,7 @@ namespace Meme_Maker
                 {
                     // user cancelled save :(
                 }
+
 
                 // restore original value
                 this.Height = this.Width = 350;

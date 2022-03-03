@@ -168,8 +168,6 @@
             // 
             // TopTextInput
             // 
-            this.TopTextInput.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.TopTextInput.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.TopTextInput.Name = "TopTextInput";
             this.TopTextInput.Size = new System.Drawing.Size(100, 23);
             this.TopTextInput.Text = "Top Text";
@@ -177,8 +175,6 @@
             // 
             // BottomTextInput
             // 
-            this.BottomTextInput.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.BottomTextInput.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.BottomTextInput.Name = "BottomTextInput";
             this.BottomTextInput.Size = new System.Drawing.Size(100, 23);
             this.BottomTextInput.Text = "Bottom Text";
@@ -186,15 +182,13 @@
             // 
             // TopLabel
             // 
-            this.TopLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TopLabel.BackColor = System.Drawing.Color.Transparent;
+            this.TopLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopLabel.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TopLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.TopLabel.Location = new System.Drawing.Point(0, 27);
             this.TopLabel.Name = "TopLabel";
-            this.TopLabel.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
+            this.TopLabel.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.TopLabel.Size = new System.Drawing.Size(334, 60);
             this.TopLabel.TabIndex = 3;
             this.TopLabel.Text = "Top Text";
@@ -208,7 +202,7 @@
             this.BottomLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.BottomLabel.Location = new System.Drawing.Point(0, 251);
             this.BottomLabel.Name = "BottomLabel";
-            this.BottomLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
+            this.BottomLabel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.BottomLabel.Size = new System.Drawing.Size(334, 60);
             this.BottomLabel.TabIndex = 4;
             this.BottomLabel.Text = "Bottom Text";
@@ -238,7 +232,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuStrip;
-            this.MaximizeBox = false;
             this.Name = "Meme_Maker";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meme Generator";
