@@ -68,29 +68,37 @@ namespace Meme_Maker
                  MessageBox.Show("You have not changed the default image!\n\nPick your own image before trying to save.", "Steady on!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             } else
             {
-                this.Height = this.Width = 1080;
-
-                int OldLabelHeights = TopLabel.Height;
-                float OldLabelSize = TopLabel.Font.SizeInPoints;
-                TopLabel.Font = BottomLabel.Font = new Font(LabelFont.FontFamily, LabelFont.SizeInPoints * 8);
-                TopLabel.Height = BottomLabel.Height = this.Height / 2;
-
+                // Show save file dialog
                 SaveFileDialog SaveDialog = new SaveFileDialog();
                 SaveDialog.FileName = $"{TopLabel.Text} {BottomLabel.Text}";
                 SaveDialog.DefaultExt = "png";
                 SaveDialog.Filter = "PNGs | *.png";
                 SaveDialog.ValidateNames = true;
 
+                // save the old font and sizes
+                int OldLabelHeights = TopLabel.Height;
+                float OldLabelSize = TopLabel.Font.SizeInPoints;
+
                 if (SaveDialog.ShowDialog() == DialogResult.OK)
                 {
+                    // if they picked a valid path
+                    
+                    // set the program width to 1080x1080
+                    this.Height = this.Width = 1080;
+                    // move labels to better positions and change the font sizes
+                    TopLabel.Height = BottomLabel.Height = this.Height / 2;
+                    TopLabel.Font = BottomLabel.Font = new Font(LabelFont.FontFamily, LabelFont.SizeInPoints * 8);
+
+                    // render a capture of the program to a bitmap 
                     int w = Convert.ToInt32(FunnyMeme.Width);
                     int h = Convert.ToInt32(FunnyMeme.Height);
                     Bitmap bmp = new Bitmap(w, h);
-
                     FunnyMeme.DrawToBitmap(bmp, new Rectangle(0, 0, w, h));
 
+                    // attempt to save the bitmap
                     try
                     {
+                        // convert to PNG and try to save
                         bmp.Save(SaveDialog.FileName, ImageFormat.Png);
                     }
                     catch (Exception ex)
@@ -103,6 +111,7 @@ namespace Meme_Maker
                     // user cancelled save :(
                 }
 
+                // restore original value
                 this.Height = this.Width = 350;
                 TopLabel.Font = BottomLabel.Font = LabelFont;
                 TopLabel.Height = BottomLabel.Height = OldLabelHeights;
