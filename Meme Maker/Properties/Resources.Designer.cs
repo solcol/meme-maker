@@ -153,6 +153,16 @@ namespace Meme_Maker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_screen_resolution_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-screen-resolution-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_source_code_40 {
             get {
                 object obj = ResourceManager.GetObject("icons8-source-code-40", resourceCulture);
@@ -166,6 +176,16 @@ namespace Meme_Maker.Properties {
         internal static System.Drawing.Bitmap icons8_type_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-type-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap placeholder {
+            get {
+                object obj = ResourceManager.GetObject("placeholder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

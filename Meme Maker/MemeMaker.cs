@@ -10,6 +10,8 @@ namespace Meme_Maker
         OpenFileDialog OpenImageFile;
         FontDialog FontPicker;
 
+        bool ImageChanged = false;
+
         Font LabelFont = new Font("Impact", 18);
 
         public Meme_Maker()
@@ -48,6 +50,7 @@ namespace Meme_Maker
                 try
                 {
                     FunnyMeme.Image = Image.FromFile(OpenImageFile.FileName);
+                    ImageChanged = true;
                 }
                 catch (Exception ex)
                 {
@@ -59,42 +62,51 @@ namespace Meme_Maker
         }
 
         private void SaveImagePrompt(object sender, EventArgs e)
-        {
-            this.Height = this.Width = 1080;
-
-            int OldLabelHeights = TopLabel.Height;
-            float OldLabelSize = TopLabel.Font.SizeInPoints;
-            TopLabel.Font = BottomLabel.Font = new Font(LabelFont.FontFamily, LabelFont.SizeInPoints*8);
-            TopLabel.Height = BottomLabel.Height = this.Height / 2;
-
-            SaveFileDialog SaveDialog = new SaveFileDialog();
-            SaveDialog.FileName = $"{TopLabel.Text} {BottomLabel.Text}";
-            SaveDialog.DefaultExt = "png";
-            SaveDialog.Filter = "PNGs | *.png";
-            SaveDialog.ValidateNames = true;
-
-            if(SaveDialog.ShowDialog() == DialogResult.OK)
+        {   
+            if(ImageChanged == false)
             {
-                int w = Convert.ToInt32(FunnyMeme.Width);
-                int h = Convert.ToInt32(FunnyMeme.Height);
-                Bitmap bmp = new Bitmap(w, h);
+                 MessageBox.Show("You have not changed the default image!\n\nPick your own image before trying to save.", "Steady on!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } else
+            {
+                this.Height = this.Width = 1080;
 
-                FunnyMeme.DrawToBitmap(bmp, new Rectangle(0, 0, w, h));
-                
-                try
+                int OldLabelHeights = TopLabel.Height;
+                float OldLabelSize = TopLabel.Font.SizeInPoints;
+                TopLabel.Font = BottomLabel.Font = new Font(LabelFont.FontFamily, LabelFont.SizeInPoints * 8);
+                TopLabel.Height = BottomLabel.Height = this.Height / 2;
+
+                SaveFileDialog SaveDialog = new SaveFileDialog();
+                SaveDialog.FileName = $"{TopLabel.Text} {BottomLabel.Text}";
+                SaveDialog.DefaultExt = "png";
+                SaveDialog.Filter = "PNGs | *.png";
+                SaveDialog.ValidateNames = true;
+
+                if (SaveDialog.ShowDialog() == DialogResult.OK)
                 {
-                    bmp.Save(SaveDialog.FileName, ImageFormat.Png);
-                } catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Problem saving your masterpiece :(", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    int w = Convert.ToInt32(FunnyMeme.Width);
+                    int h = Convert.ToInt32(FunnyMeme.Height);
+                    Bitmap bmp = new Bitmap(w, h);
+
+                    FunnyMeme.DrawToBitmap(bmp, new Rectangle(0, 0, w, h));
+
+                    try
+                    {
+                        bmp.Save(SaveDialog.FileName, ImageFormat.Png);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Problem saving your masterpiece :(", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-            } else { 
-               // user cancelled save :(
-            }
+                else
+                {
+                    // user cancelled save :(
+                }
 
-            this.Height = this.Width = 350;
-            TopLabel.Font = BottomLabel.Font = LabelFont;
-            TopLabel.Height = BottomLabel.Height = OldLabelHeights;
+                this.Height = this.Width = 350;
+                TopLabel.Font = BottomLabel.Font = LabelFont;
+                TopLabel.Height = BottomLabel.Height = OldLabelHeights;
+            }
         }
 
         private void ColorPickerPrompt(object sender, EventArgs e)
@@ -105,34 +117,45 @@ namespace Meme_Maker
             }
         }
 
-        private void ImageClick(object sender, EventArgs e)
-        {
-
-        }
-
         private void FontPickerDialog(object sender, EventArgs e)
         {
             FontPicker = new FontDialog();
             FontPicker.Font = LabelFont;
             FontPicker.ShowDialog();
 
-            if (FontPicker.FontMustExist != false)
-            {
+            //if (FontPicker.FontMustExist != false)
+            //{
                 TopLabel.Font = BottomLabel.Font = LabelFont = FontPicker.Font;
-            } else
-            {
-                MessageBox.Show("You have tried to pick a font that doesn't exist!", "Woah there!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            //} else
+            //{
+            //    MessageBox.Show("You have tried to pick a font that doesn't exist!", "Woah there!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
         }
 
         private void AboutPrompt(object sender, EventArgs e)
         {
-            MessageBox.Show("2022 SolCol.ThomasR.me\n\nMade at the request of Shaista, teaching Unit 6 C# Programming.\n\nWith some inspiration from the MooICT.com tutorial, with thanks to Lewis.\nIcons from Icons8.", "About this Program", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("2022 SolCol.ThomasR.me\n\n" +
+                            "Made at the request of Shaista, teaching Unit 6 C# Programming.\n\n" +
+                            "With some inspiration from the MooICT.com tutorial.\n" +
+                            "Additional thanks to Lewis.\nIcons from Icons8.",
+                            "About this Program", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void OpenSourceCode(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/itsmeimtom/solcol-mememaker");
+        }
+
+        private void UpdateStretch(object sender, EventArgs e)
+        {
+            if (StretchToggle.Checked)
+            {
+                FunnyMeme.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            else
+            {
+                FunnyMeme.SizeMode = PictureBoxSizeMode.Zoom;
+            }
         }
     }
 }
