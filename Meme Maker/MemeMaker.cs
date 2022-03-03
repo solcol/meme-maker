@@ -78,7 +78,7 @@ namespace Meme_Maker
             {
                 // Show save file dialog
                 SaveFileDialog SaveDialog = new SaveFileDialog();
-                SaveDialog.FileName = $"{TopLabel.Text} {BottomLabel.Text} ({LabelFont.FontFamily},{LabelFont.SizeInPoints})";
+                SaveDialog.FileName = $"{TopLabel.Text} {BottomLabel.Text} ({LabelFont.FontFamily.Name},{LabelFont.SizeInPoints})";
                 SaveDialog.DefaultExt = "png";
                 SaveDialog.Filter = "PNGs | *.png";
                 SaveDialog.ValidateNames = true;
