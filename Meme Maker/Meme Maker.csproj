@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -78,6 +79,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-about-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-angry-face-meme-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-circle-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-color-swatch-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-file-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-image-file-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-kawaii-bread-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-rainbow-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-source-code-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-type-30.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

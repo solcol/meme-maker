@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using System.Drawing.Imaging;
 
 namespace Meme_Maker
@@ -16,6 +9,7 @@ namespace Meme_Maker
     {
         OpenFileDialog OpenImageFile;
         FontDialog FontPicker;
+
         Font LabelFont = new Font("Impact", 18);
 
         public Meme_Maker()
@@ -70,7 +64,7 @@ namespace Meme_Maker
 
             int OldLabelHeights = TopLabel.Height;
             float OldLabelSize = TopLabel.Font.SizeInPoints;
-            TopLabel.Font = BottomLabel.Font = new Font("Impact", 100);
+            TopLabel.Font = BottomLabel.Font = new Font(LabelFont.FontFamily, LabelFont.SizeInPoints*8);
             TopLabel.Height = BottomLabel.Height = this.Height / 2;
 
             SaveFileDialog SaveDialog = new SaveFileDialog();
@@ -92,7 +86,7 @@ namespace Meme_Maker
                     bmp.Save(SaveDialog.FileName, ImageFormat.Png);
                 } catch (Exception ex)
                 {
-                    MessageBox.Show("Problem saving your masterpiece :(",ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Problem saving your masterpiece :(", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             } else { 
                // user cancelled save :(
@@ -118,8 +112,27 @@ namespace Meme_Maker
 
         private void FontPickerDialog(object sender, EventArgs e)
         {
+            FontPicker = new FontDialog();
+            FontPicker.Font = LabelFont;
             FontPicker.ShowDialog();
-            TopLabel.Font = BottomLabel.Font = FontPicker.font;
+
+            if (FontPicker.FontMustExist != false)
+            {
+                TopLabel.Font = BottomLabel.Font = LabelFont = FontPicker.Font;
+            } else
+            {
+                MessageBox.Show("You have tried to pick a font that doesn't exist!", "Woah there!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void AboutPrompt(object sender, EventArgs e)
+        {
+            MessageBox.Show("2022 SolCol.ThomasR.me\n\nMade at the request of Shaista, teaching Unit 6 C# Programming.\n\nWith some inspiration from the MooICT.com tutorial, with thanks to Lewis.\nIcons from Icons8.", "About this Program", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void OpenSourceCode(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/itsmeimtom/solcol-mememaker");
         }
     }
 }
